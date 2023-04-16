@@ -1,0 +1,33 @@
+package com.codeLife.openThirdParty.api;
+
+
+import com.codeLife.openThirdParty.application.AppConfigService;
+import com.codeLife.openThirdParty.domain.SysAppConfig;
+import com.codeLife.openThirdParty.domain.dto.AppConfigDto;
+import com.codeLife.openThirdParty.infrastructure.common.param.ResultData;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * 应用配置表(SysAppConfig)表控制层
+ *
+ * @author Hellotzt
+ */
+@RestController
+@RequestMapping("/app")
+public class AppConfigController {
+    private final AppConfigService appConfigService;
+
+    public AppConfigController(AppConfigService appConfigService) {
+        this.appConfigService = appConfigService;
+    }
+
+    @PostMapping("/getAppConfig")
+    public ResultData<SysAppConfig> getAppConfig(@RequestBody AppConfigDto dto){
+        SysAppConfig appConfig = appConfigService.getAppConfig(dto);
+        return ResultData.success(appConfig);
+    }
+}
+

@@ -1,0 +1,14 @@
+logs/
+/src/main/resources/application-dev.yml
+/src/main/resources/application-test.yml
+/target/
+/src/test/
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# system ignore
+.DS_Store
+Thumbs.db
