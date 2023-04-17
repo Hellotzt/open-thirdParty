@@ -10,9 +10,8 @@ import com.codeLife.openThirdParty.domain.SysAppConfig;
  */
 public interface SysAppConfigService extends IService<SysAppConfig> {
     /**
-     * 获取app配置
-     *
-     * @param appId 筛选条件
+     * 通过appId获取app配置
+     * @param appId appId
      * @return app配置信息
      */
     SysAppConfig getAppConfigByAppId(String appId);
