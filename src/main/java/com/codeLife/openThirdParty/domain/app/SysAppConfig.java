@@ -1,4 +1,4 @@
-package com.codeLife.openThirdParty.domain;
+package com.codeLife.openThirdParty.domain.app;
 
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;

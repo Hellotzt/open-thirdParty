@@ -1,7 +1,7 @@
-package com.codeLife.openThirdParty.infrastructure.mapper;
+package com.codeLife.openThirdParty.infrastructure.app.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.codeLife.openThirdParty.domain.SysAppConfig;
+import com.codeLife.openThirdParty.domain.app.SysAppConfig;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

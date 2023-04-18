@@ -1,4 +1,4 @@
-package com.codeLife.openThirdParty.domain.dto;
+package com.codeLife.openThirdParty.domain.app.dto;
 
 import lombok.Data;
 

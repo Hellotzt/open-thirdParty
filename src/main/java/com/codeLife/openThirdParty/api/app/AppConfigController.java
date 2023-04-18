@@ -1,9 +1,9 @@
-package com.codeLife.openThirdParty.api;
+package com.codeLife.openThirdParty.api.app;
 
 
-import com.codeLife.openThirdParty.application.AppConfigService;
-import com.codeLife.openThirdParty.domain.SysAppConfig;
-import com.codeLife.openThirdParty.domain.dto.AppConfigDto;
+import com.codeLife.openThirdParty.application.app.AppConfigService;
+import com.codeLife.openThirdParty.domain.app.SysAppConfig;
+import com.codeLife.openThirdParty.domain.app.dto.AppConfigDto;
 import com.codeLife.openThirdParty.infrastructure.common.param.ResultData;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

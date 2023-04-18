@@ -1,7 +1,7 @@
-package com.codeLife.openThirdParty.infrastructure.service;
+package com.codeLife.openThirdParty.infrastructure.app.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.codeLife.openThirdParty.domain.SysAppConfig;
+import com.codeLife.openThirdParty.domain.app.SysAppConfig;
 
 /**
  * 应用配置表(SysAppConfig)表服务接口
