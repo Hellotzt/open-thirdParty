@@ -4,6 +4,8 @@ import cn.hutool.core.util.IdUtil;
 import com.codeLife.openThirdParty.domain.app.SysAppConfig;
 import com.codeLife.openThirdParty.infrastructure.common.util.PrivateKeyUtil;
 import com.codeLife.openThirdParty.infrastructure.wechat.service.WechatService;
+import com.codeLife.openThirdParty.infrastructure.wechat.service.feign.WechatPayFeign;
+import com.codeLife.openThirdParty.infrastructure.wechat.service.feign.vo.NativeCodeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,18 @@ import java.util.Base64;
 @Slf4j
 @Service
 public class WechatServiceImpl implements WechatService {
+    private final WechatPayFeign wechatPayFeign;
+
+    public WechatServiceImpl(WechatPayFeign wechatPayFeign) {
+        this.wechatPayFeign = wechatPayFeign;
+    }
+
+    @Override
+    public NativeCodeVo getNativeCodeUrl(String reqBody, SysAppConfig appConfig) {
+        String nativeToken = this.getNativeToken(reqBody, appConfig);
+        return wechatPayFeign.getNativeCodeUrl(reqBody, nativeToken);
+    }
+
     @Override
     public String getNativeToken(String reqBody, SysAppConfig appConfig) {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);

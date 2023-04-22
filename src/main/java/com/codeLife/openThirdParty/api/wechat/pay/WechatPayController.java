@@ -28,7 +28,6 @@ public class WechatPayController {
      */
     @RequestMapping("/getNativeUrl")
     public ResultData<Object> getNativeUrl(@RequestBody WechatPayDto dto){
-        wechatPayService.getNativeUrl(dto);
-        return null;
+        return wechatPayService.getNativeUrl(dto);
     }
 }
