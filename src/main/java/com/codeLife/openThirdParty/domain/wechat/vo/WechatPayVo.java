@@ -1,15 +1,11 @@
 package com.codeLife.openThirdParty.domain.wechat.vo;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.codeLife.openThirdParty.domain.app.SysAppConfig;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class WechatPayVo {
@@ -59,6 +55,7 @@ public class WechatPayVo {
     /**
      * 订单金额信息
      */
+    @JsonProperty("amount")
     private WechatAmountVo wechatAmountVo;
 
     /**
@@ -70,14 +67,15 @@ public class WechatPayVo {
         WechatPayVo payVo = new WechatPayVo();
         payVo.setAppId(appConfig.getAppId());
         payVo.setMchId(appConfig.getWechatMchId());
-        String outTradeNo = appConfig.getAppId() + DateUtil.format(new Date(), DatePattern.PURE_DATETIME_PATTERN) +
-                StrUtil.sub(IdUtil.fastSimpleUUID(),0,6);
+        String outTradeNo = appConfig.getAppId() +
+                StrUtil.sub(IdUtil.fastSimpleUUID(),0,14);
         payVo.setOutTradeNo(outTradeNo);
         if (ObjectUtil.isNull(wechatAmountVo)){
             wechatAmountVo = new WechatAmountVo();
             wechatAmountVo.setTotal(1);
         }
         payVo.setWechatAmountVo(wechatAmountVo);
+        payVo.setNotifyUrl(appConfig.getWechatPayNotifyUrl());
         return payVo;
     }
 }

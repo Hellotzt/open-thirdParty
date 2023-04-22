@@ -46,9 +46,17 @@ public class SysAppConfig extends Model<SysAppConfig> {
      */
     private String wechatApiV3Key;
     /**
-     * 微信支付证书
+     * 微信私钥地址
      */
-    private String wechatCertificate;
+    private String wechatPrivateKeyPath;
+    /**
+     * 微信证书序列号
+     */
+    private String wechatSerialNo;
+    /**
+     * 微信支付回调地址
+     */
+    private String wechatPayNotifyUrl;
     /**
      * 创建时间
      */
