@@ -1,4 +1,4 @@
-package com.codeLife.openThirdParty.domain.wechat.dto;
+package com.codeLife.openThirdParty.domain.wechat.pay.dto;
 
 import lombok.Data;
 

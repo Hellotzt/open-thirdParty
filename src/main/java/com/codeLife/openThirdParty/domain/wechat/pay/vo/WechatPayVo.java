@@ -1,4 +1,4 @@
-package com.codeLife.openThirdParty.domain.wechat.vo;
+package com.codeLife.openThirdParty.domain.wechat.pay.vo;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;

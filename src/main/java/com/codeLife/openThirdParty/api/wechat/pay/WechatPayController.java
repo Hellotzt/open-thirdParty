@@ -1,8 +1,8 @@
 package com.codeLife.openThirdParty.api.wechat.pay;
 
 import com.codeLife.openThirdParty.application.wechat.WechatPayService;
-import com.codeLife.openThirdParty.domain.wechat.dto.NotificationDto;
-import com.codeLife.openThirdParty.domain.wechat.dto.WechatPayDto;
+import com.codeLife.openThirdParty.domain.wechat.pay.dto.NotificationDto;
+import com.codeLife.openThirdParty.domain.wechat.pay.dto.WechatPayDto;
 import com.codeLife.openThirdParty.infrastructure.common.param.ResultData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
