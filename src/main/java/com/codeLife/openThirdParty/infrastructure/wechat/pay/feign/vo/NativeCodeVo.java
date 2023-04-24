@@ -1,4 +1,4 @@
-package com.codeLife.openThirdParty.infrastructure.wechat.service.feign.vo;
+package com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

@@ -10,8 +10,8 @@ import com.codeLife.openThirdParty.infrastructure.app.service.SysAppConfigServic
 import com.codeLife.openThirdParty.infrastructure.common.param.CodeMsg;
 import com.codeLife.openThirdParty.infrastructure.common.param.ResultData;
 import com.codeLife.openThirdParty.infrastructure.common.util.PrivateKeyUtil;
-import com.codeLife.openThirdParty.infrastructure.wechat.service.WechatService;
-import com.codeLife.openThirdParty.infrastructure.wechat.service.feign.vo.NativeCodeVo;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.serivice.WechatService;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.vo.NativeCodeVo;
 import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner;
 import com.wechat.pay.contrib.apache.httpclient.auth.Verifier;
 import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Credentials;

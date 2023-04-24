@@ -1,11 +1,11 @@
-package com.codeLife.openThirdParty.infrastructure.wechat.service.impl;
+package com.codeLife.openThirdParty.infrastructure.wechat.pay.serivice.impl;
 
 import cn.hutool.core.util.IdUtil;
 import com.codeLife.openThirdParty.domain.app.SysAppConfig;
 import com.codeLife.openThirdParty.infrastructure.common.util.PrivateKeyUtil;
-import com.codeLife.openThirdParty.infrastructure.wechat.service.WechatService;
-import com.codeLife.openThirdParty.infrastructure.wechat.service.feign.WechatPayFeign;
-import com.codeLife.openThirdParty.infrastructure.wechat.service.feign.vo.NativeCodeVo;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.serivice.WechatService;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.WechatPayFeign;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.vo.NativeCodeVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;

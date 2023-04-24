@@ -1,7 +1,7 @@
-package com.codeLife.openThirdParty.infrastructure.wechat.service;
+package com.codeLife.openThirdParty.infrastructure.wechat.pay.serivice;
 
 import com.codeLife.openThirdParty.domain.app.SysAppConfig;
-import com.codeLife.openThirdParty.infrastructure.wechat.service.feign.vo.NativeCodeVo;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.vo.NativeCodeVo;
 
 public interface WechatService {
     /**

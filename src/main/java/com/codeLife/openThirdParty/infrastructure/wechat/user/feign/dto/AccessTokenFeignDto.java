@@ -1,4 +1,4 @@
-package com.codeLife.openThirdParty.infrastructure.wechat.service.feign.dto;
+package com.codeLife.openThirdParty.infrastructure.wechat.user.feign.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

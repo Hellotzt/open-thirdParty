@@ -6,7 +6,7 @@ import com.codeLife.openThirdParty.domain.wechat.user.vo.AccessTokenVo;
 import com.codeLife.openThirdParty.infrastructure.common.param.CodeMsg;
 import com.codeLife.openThirdParty.infrastructure.common.param.ResultData;
 import com.codeLife.openThirdParty.infrastructure.common.util.RedisUtil;
-import com.codeLife.openThirdParty.infrastructure.wechat.service.user.WechatAuthService;
+import com.codeLife.openThirdParty.infrastructure.wechat.user.service.WechatAuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 @Slf4j

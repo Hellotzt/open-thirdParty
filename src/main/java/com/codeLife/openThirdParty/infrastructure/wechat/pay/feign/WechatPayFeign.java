@@ -1,6 +1,6 @@
-package com.codeLife.openThirdParty.infrastructure.wechat.service.feign;
+package com.codeLife.openThirdParty.infrastructure.wechat.pay.feign;
 
-import com.codeLife.openThirdParty.infrastructure.wechat.service.feign.vo.NativeCodeVo;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.vo.NativeCodeVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
