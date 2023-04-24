@@ -30,7 +30,7 @@ public class SysAppConfigServiceImpl extends ServiceImpl<SysAppConfigMapper, Sys
     public SysAppConfig getAppConfigByAppId(String appId) {
         Object redisResult = redisUtil.get(AppRedisKey.AppIdKey + appId);
         if (ObjectUtil.isNotNull(redisResult)){
-            return JSON.parseObject(JSON.toJSONString(redisResult),SysAppConfig.class);
+            return JSON.parseObject(redisResult.toString(),SysAppConfig.class);
         }
         SysAppConfig appConfig = this.getOne(new LambdaQueryWrapper<SysAppConfig>()
                 .eq(SysAppConfig::getAppId, appId));

@@ -16,6 +16,7 @@ public class CodeMsg {
 	 */
 	public static CodeMsg SUCCESS = new CodeMsg("000000", "操作成功");
 	public static CodeMsg FAIL = new CodeMsg("500000", "操作失败");
+	public static CodeMsg AUTH_ERROR = new CodeMsg("500001", "非法访问");
 
 
 	public static CodeMsg SERVER_ERROR = new CodeMsg("999999", "系统错误,请联系管理员");

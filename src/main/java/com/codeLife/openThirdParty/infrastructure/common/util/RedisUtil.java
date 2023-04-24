@@ -1,5 +1,6 @@
 package com.codeLife.openThirdParty.infrastructure.common.util;
 
+import com.alibaba.fastjson2.JSON;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
@@ -48,7 +49,7 @@ public class RedisUtil {
      */
     public void setWithExpireTime(String key, Object value, long expireTime,TimeUnit timeUnit) {
         ValueOperations<String, Object> operations = redisTemplate.opsForValue();
-        operations.set(key, value, expireTime, timeUnit);
+        operations.set(key, JSON.toJSONString(value), expireTime, timeUnit);
     }
 
     /**
