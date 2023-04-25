@@ -12,8 +12,4 @@ public class AccessTokenDto {
      * code
      */
     private String code;
-    /**
-     * 校验码
-     */
-    private String state;
 }
