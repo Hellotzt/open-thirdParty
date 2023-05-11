@@ -6,7 +6,7 @@ spring:
   application:
     name: openThirdParty
   profiles:
-    active: dev
+    active: test
   servlet:
     multipart:
       max-file-size: 10MB        # 设置单个文件最大大小为10MB
@@ -28,3 +28,7 @@ mybatis-plus:
 logging:
   level:
     root : INFO
+
+wechat:
+  pay:
+    native: https://api.mch.weixin.qq.com/v3/pay/transactions/native
