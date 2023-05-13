@@ -2,16 +2,20 @@ package com.codeLife.openThirdParty.application.wechat;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.codeLife.openThirdParty.domain.app.SysAppConfig;
 import com.codeLife.openThirdParty.domain.wechat.pay.dto.NotificationDto;
 import com.codeLife.openThirdParty.domain.wechat.pay.dto.WechatPayDto;
+import com.codeLife.openThirdParty.domain.wechat.pay.enums.TradeState;
+import com.codeLife.openThirdParty.domain.wechat.pay.vo.NotificationVo;
 import com.codeLife.openThirdParty.domain.wechat.pay.vo.WechatPayVo;
 import com.codeLife.openThirdParty.infrastructure.app.service.SysAppConfigService;
 import com.codeLife.openThirdParty.infrastructure.common.param.CodeMsg;
 import com.codeLife.openThirdParty.infrastructure.common.param.ResultData;
 import com.codeLife.openThirdParty.infrastructure.common.util.PrivateKeyUtil;
-import com.codeLife.openThirdParty.infrastructure.wechat.pay.serivice.WechatService;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.UniversityPayFeign;
 import com.codeLife.openThirdParty.infrastructure.wechat.pay.feign.vo.NativeCodeVo;
+import com.codeLife.openThirdParty.infrastructure.wechat.pay.serivice.WechatService;
 import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner;
 import com.wechat.pay.contrib.apache.httpclient.auth.Verifier;
 import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Credentials;
@@ -30,10 +34,12 @@ import java.nio.charset.StandardCharsets;
 public class WechatPayService {
     private final SysAppConfigService appConfigService;
     private final WechatService wechatService;
+    private final UniversityPayFeign universityPayFeign;
 
-    public WechatPayService(SysAppConfigService appConfigService, WechatService wechatService) {
+    public WechatPayService(SysAppConfigService appConfigService, WechatService wechatService, UniversityPayFeign universityPayFeign) {
         this.appConfigService = appConfigService;
         this.wechatService = wechatService;
+        this.universityPayFeign = universityPayFeign;
     }
 
 
@@ -43,8 +49,7 @@ public class WechatPayService {
             log.info("获取应用配置失败：{}",dto);
             return ResultData.fail(CodeMsg.SERVER_ERROR);
         }
-        WechatPayVo payVo = new WechatPayVo().buildByAppConfig(appConfig,null);
-        payVo.setDescription("测试商品");
+        WechatPayVo payVo = new WechatPayVo().buildByAppConfig(appConfig,dto);
         NativeCodeVo nativeCodeVo = wechatService.getNativeCodeUrl(JSON.toJSONString(payVo), appConfig);
         return ResultData.success(nativeCodeVo.getCodeUrl());
     }
@@ -72,6 +77,15 @@ public class WechatPayService {
             Notification notification = handler.parse(request);
             Assert.assertNotNull(notification);
             log.info("报文解析结果：{}", notification);
+            NotificationVo notificationVo = JSON.parseObject(notification.getDecryptData(), NotificationVo.class);
+            if (TradeState.SUCCESS.getType().equals(notificationVo.getTradeState())) {
+                String result = universityPayFeign.paySuccess(notificationVo.getOutTradeNo());
+                JSONObject jsonObject = JSON.parseObject(result);
+                if (200 != jsonObject.getInteger("code")) {
+                    throw new RuntimeException("业务处理异常");
+                }
+            }
+
         } catch (Exception e) {
             log.error("微信支付回调处理异常：", e);
             throw new RuntimeException(e);

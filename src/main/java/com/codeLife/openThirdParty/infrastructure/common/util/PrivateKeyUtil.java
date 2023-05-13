@@ -1,16 +1,16 @@
 package com.codeLife.openThirdParty.infrastructure.common.util;
 
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
-
 public class PrivateKeyUtil {
     /**
      * 获取私钥
@@ -18,7 +18,19 @@ public class PrivateKeyUtil {
      * @return 私钥对象
      */
     public static PrivateKey getPrivateKey(String filePath) throws IOException {
-        String content = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
+        InputStream inputStream = new ClassPathResource(filePath).getInputStream();
+        ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            // 将缓冲区中的数据写入到 ByteArrayOutputStream 中
+            resultStream.write(buffer, 0, length);
+        }
+        // 将 ByteArrayOutputStream 中的字节转换为字符串
+        String content = resultStream.toString("UTF-8");
+        // 关闭 ByteArrayOutputStream
+        resultStream.close();
+
         try {
             String privateKey = content.replace("-----BEGIN PRIVATE KEY-----", "")
                     .replace("-----END PRIVATE KEY-----", "")
