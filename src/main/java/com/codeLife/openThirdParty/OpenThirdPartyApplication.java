@@ -6,6 +6,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * CodeLife-开放第三方平台
+ *
+ * @author Hellotzt
  */
 @EnableFeignClients
 @SpringBootApplication

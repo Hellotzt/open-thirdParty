@@ -1,9 +1,8 @@
 package com.codeLife.openThirdParty.domain.wechat.pay.vo;
 
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.codeLife.openThirdParty.domain.app.SysAppConfig;
+import com.codeLife.openThirdParty.domain.wechat.pay.dto.WechatPayDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -43,7 +42,7 @@ public class WechatPayVo {
     @JsonProperty("notify_url")
     private String notifyUrl;
     /**
-     * 订单优惠标记	
+     * 订单优惠标记
      */
     @JsonProperty("goods_tag")
     private String goodsTag;
@@ -60,20 +59,18 @@ public class WechatPayVo {
 
     /**
      * 根据app配置构建基础微信支付实体
+     *
      * @param appConfig app配置
      * @return 基础微信支付实体
      */
-    public WechatPayVo buildByAppConfig(SysAppConfig appConfig,WechatAmountVo wechatAmountVo){
+    public WechatPayVo buildByAppConfig(SysAppConfig appConfig, WechatPayDto dto) {
         WechatPayVo payVo = new WechatPayVo();
         payVo.setAppId(appConfig.getAppId());
         payVo.setMchId(appConfig.getWechatMchId());
-        String outTradeNo = appConfig.getAppId() +
-                StrUtil.sub(IdUtil.fastSimpleUUID(),0,14);
-        payVo.setOutTradeNo(outTradeNo);
-        if (ObjectUtil.isNull(wechatAmountVo)){
-            wechatAmountVo = new WechatAmountVo();
-            wechatAmountVo.setTotal(1);
-        }
+        payVo.setOutTradeNo(dto.getOutTradeNo());
+        wechatAmountVo = new WechatAmountVo();
+        wechatAmountVo.setTotal(dto.getTotalPrice() != null ? dto.getTotalPrice() : 1);
+        payVo.setDescription(StrUtil.isBlank(dto.getDescription()) ? "test" : dto.getDescription());
         payVo.setWechatAmountVo(wechatAmountVo);
         payVo.setNotifyUrl(appConfig.getWechatPayNotifyUrl());
         return payVo;

@@ -1,6 +1,6 @@
 logs/
+/src/main/resources/wechat/
 /src/main/resources/application-dev.yml
-/src/main/resources/application-test.yml
 /target/
 /src/test/
 ### IntelliJ IDEA ###

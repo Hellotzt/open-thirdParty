@@ -26,12 +26,17 @@ public class WechatServiceImpl implements WechatService {
 
     @Override
     public NativeCodeVo getNativeCodeUrl(String reqBody, SysAppConfig appConfig) {
-        String nativeToken = this.getNativeToken(reqBody, appConfig);
+        String nativeToken = this.buildNativeHeader(reqBody, appConfig);
         return wechatPayFeign.getNativeCodeUrl(reqBody, nativeToken);
     }
 
-    @Override
-    public String getNativeToken(String reqBody, SysAppConfig appConfig) {
+    /**
+     * 获取native支付所需token
+     * @param reqBody 请求体
+     * @param appConfig 应用配置信息
+     * @return token
+     */
+    private String buildNativeHeader(String reqBody, SysAppConfig appConfig) {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         String nonceStr = IdUtil.fastSimpleUUID();
         String nativePaySign = this.getNativePaySign(reqBody, timestamp, nonceStr, appConfig.getWechatPrivateKeyPath());
